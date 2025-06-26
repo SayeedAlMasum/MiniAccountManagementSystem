@@ -1,0 +1,83 @@
+﻿@* Voucher/Create.cshtml *@
+@page
+@model CreateVoucherModel
+@{
+    ViewData["Title"] = "Create Voucher";
+}
+
+<h2>Create Voucher</h2>
+
+<form method="post">
+    <div class="mb-3">
+        <label>Date</label>
+        <input asp-for="Voucher.Date" class="form-control" type="date" />
+    </div>
+    <div class="mb-3">
+        <label>Reference No</label>
+        <input asp-for="Voucher.ReferenceNo" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label>Voucher Type</label>
+        <select asp-for="Voucher.VoucherType" class="form-select">
+            <option value="Journal">Journal</option>
+            <option value="Payment">Payment</option>
+            <option value="Receipt">Receipt</option>
+        </select>
+    </div>
+
+    <table class="table" id="entryTable">
+        <thead>
+            <tr>
+                <th>Account</th>
+                <th>Debit</th>
+                <th>Credit</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <select name="Voucher.Entries[0].AccountId" class="form-select">
+                        @foreach (var acc in Model.AccountOptions)
+                        {
+                            <option value="@acc.Value">@acc.Text</option>
+                        }
+                    </select>
+                </td>
+                <td><input name="Voucher.Entries[0].Debit" class="form-control" /></td>
+                <td><input name="Voucher.Entries[0].Credit" class="form-control" /></td>
+                <td><button type="button" class="btn btn-danger btn-sm" onclick="removeRow(this)">X</button></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button type="button" class="btn btn-secondary" onclick="addRow()">Add Entry</button>
+    <button type="submit" class="btn btn-primary">Save Voucher</button>
+</form>
+
+@section Scripts {
+    <script>
+        let rowIdx = 1;
+        function addRow() {
+            const row = `<tr>
+                <td>
+                    <select name="Voucher.Entries[${rowIdx}].AccountId" class="form-select">
+                        @foreach (var acc in Model.AccountOptions)
+                        {
+                                <option value="@acc.Value">@acc.Text</option>
+                        }
+                    </select>
+                </td>
+                <td><input name="Voucher.Entries[${rowIdx}].Debit" class="form-control" /></td>
+                <td><input name="Voucher.Entries[${rowIdx}].Credit" class="form-control" /></td>
+                <td><button type="button" class="btn btn-danger btn-sm" onclick="removeRow(this)">X</button></td>
+            </tr>`;
+            document.querySelector("#entryTable tbody").insertAdjacentHTML('beforeend', row);
+            rowIdx++;
+        }
+
+        function removeRow(btn) {
+            btn.closest('tr').remove();
+        }
+    </script>
+}

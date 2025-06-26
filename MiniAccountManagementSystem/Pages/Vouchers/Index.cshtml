@@ -1,0 +1,42 @@
+﻿@* Vouchers/Index.cshtml *@
+@page
+@model MiniAccountManagementSystem.Pages.Vouchers.IndexModel
+@{
+    ViewData["Title"] = "Voucher List";
+}
+
+<h2>Voucher List</h2>
+
+<a asp-page="Create" class="btn btn-primary mb-3">Create New Voucher</a>
+
+@foreach (var v in Model.Vouchers)
+{
+    <div class="card mb-3">
+        <div class="card-header bg-light">
+            <strong>Ref:</strong> @v.ReferenceNo |
+            <strong>Type:</strong> @v.VoucherType |
+            <strong>Date:</strong> @v.Date.ToShortDateString()
+        </div>
+        <div class="card-body p-0">
+            <table class="table table-sm m-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>Account</th>
+                        <th class="text-end">Debit</th>
+                        <th class="text-end">Credit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var e in v.Entries)
+                    {
+                        <tr>
+                            <td>@e.AccountName</td>
+                            <td class="text-end">@e.Debit.ToString("N2")</td>
+                            <td class="text-end">@e.Credit.ToString("N2")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}

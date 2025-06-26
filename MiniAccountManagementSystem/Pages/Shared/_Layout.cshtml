@@ -54,6 +54,13 @@
                                 </li>
                             }
                         }
+                        @if (User.IsInRole("Admin") || User.IsInRole("Accountant") || User.IsInRole("Viewer"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-page="/Vouchers/Index">Vouchers</a>
+                            </li>
+                        }
+
                     </ul>
 
                     @* Login/Logout/Profile partial *@

@@ -13,6 +13,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddScoped<ChartOfAccountRepository>();
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+builder.Services.AddScoped<VoucherService>();
 
 // ? Add Identity with Role support
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
