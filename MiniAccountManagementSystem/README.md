@@ -27,5 +27,12 @@ A small accounting management system built with ASP.NET Core Razor Pages and SQL
 - Export voucher list to `.xlsx` file using ClosedXML
 
 ## 📷 Screenshots
-![Login Page](wwwroot/images/login.png)
-![Voucher List](wwwroot/images/vouchers.png) 
+![Home Page](wwwroot/images/Home_Page.png)
+![Login Page](wwwroot/images/Login.png)
+![Register Page](wwwroot/images/Register.png)
+![Chart of Account Entry Page](wwwroot/images/Chart_Of_Accounts_EntryPage.png) 
+![Chart of Account View Page](wwwroot/images/Chart_Of_Accounts_ViewPage.png) 
+![Voucher Entry Page](wwwroot/images/Voucher_EntryPage.png) 
+![Voucher List](wwwroot/images/Voucher_List.png) 
+![Excel](wwwroot/images/Excel.png) 
+
