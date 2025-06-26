@@ -1,0 +1,39 @@
+﻿@* ManageRoles.cshtml *@
+@page
+@model MiniAccountManagementSystem.Pages.Admin.ManageRolesModel
+@{
+    ViewData["Title"] = "Manage User Roles";
+}
+
+<h2>Manage User Roles</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>User</th>
+            <th>Current Roles</th>
+            <th>Assign New Role</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model.Users)
+        {
+            <tr>
+                <td>@user.UserName</td>
+                <td>@string.Join(", ", Model.UserRoles[user.Id])</td>
+                <td>
+                    <form method="post" asp-page-handler="AssignRole">
+                        <input type="hidden" name="userId" value="@user.Id" />
+                        <select name="role" class="form-select d-inline w-auto">
+                            @foreach (var role in Model.AllRoles)
+                            {
+                                <option value="@role">@role</option>
+                            }
+                        </select>
+                        <button type="submit" class="btn btn-sm btn-primary">Assign</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
