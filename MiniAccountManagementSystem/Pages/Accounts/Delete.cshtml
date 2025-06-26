@@ -1,0 +1,23 @@
+﻿@* Delete.cshtml *@
+@page "{id:int}"
+@model DeleteModel
+@{
+    ViewData["Title"] = "Delete Account";
+}
+
+<h2>Delete Account</h2>
+
+<h3>Are you sure you want to delete this account?</h3>
+
+<div>
+    <strong>Name:</strong> @Model.Account.Name
+</div>
+<div>
+    <strong>Parent:</strong> @Model.ParentName ?? "None"
+</div>
+
+<form method="post">
+    <input type="hidden" asp-for="Account.Id" />
+    <button type="submit" class="btn btn-danger">Yes, Delete</button>
+    <a asp-page="Index" class="btn btn-secondary">Cancel</a>
+</form>

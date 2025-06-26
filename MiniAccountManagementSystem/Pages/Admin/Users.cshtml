@@ -1,0 +1,30 @@
+﻿@* Users.cshtml *@
+@page
+@model MiniAccountManagementSystem.Pages.Admin.UsersModel
+@{
+    ViewData["Title"] = "Manage Users";
+}
+
+<h2>Manage Users</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Email</th>
+            <th>Roles</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model.Users)
+        {
+            <tr>
+                <td>@user.User.Email</td>
+                <td>@user.Roles</td>
+                <td>
+                    <a asp-page="EditUserRole" asp-route-id="@user.User.Id">Edit Roles</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

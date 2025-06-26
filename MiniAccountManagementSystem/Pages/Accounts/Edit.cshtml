@@ -1,0 +1,32 @@
+﻿@* Edit.cshtml *@
+@page "{id:int}"
+@model EditModel
+@{
+    ViewData["Title"] = "Edit Account";
+}
+
+<h2>Edit Account</h2>
+
+<form method="post">
+    <input type="hidden" asp-for="Account.Id" />
+
+    <div class="mb-3">
+        <label asp-for="Account.Name" class="form-label"></label>
+        <input asp-for="Account.Name" class="form-control" />
+        <span asp-validation-for="Account.Name" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Account.ParentId" class="form-label"></label>
+        <select asp-for="Account.ParentId" asp-items="Model.ParentOptions" class="form-select">
+            <option value="">None</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update</button>
+    <a asp-page="Index" class="btn btn-secondary">Cancel</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
